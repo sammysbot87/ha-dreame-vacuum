@@ -27,6 +27,20 @@ This is an intentionally **simple, honest integration**. It does one thing well:
 
 > 💡 **The shortcuts approach is intentional.** Configure your cleaning routines (rooms, suction level, mop settings) directly in the Dreame app where you have the full UI, then expose them as one-tap shortcuts in HA. This keeps the integration simple and reliable.
 
+### Controlling Individual Rooms
+
+This integration does **not** support targeting individual rooms directly — there is no room map, no segment IDs, and no room-selection API exposed.
+
+**The recommended approach is shortcuts:**
+
+1. Open the **Dreame app** on your phone
+2. Create a shortcut for each room you want to control (e.g. "Kitchen", "Living Room", "Bedrooms")
+3. Configure each shortcut with the exact rooms, suction level, and mop settings you want
+4. Those shortcuts will automatically appear as **button entities** in HA when the integration loads
+5. Trigger them from automations, dashboards, or voice assistants like any other HA button
+
+This way you get full per-room control with all the power of the Dreame app's room editor, and HA just triggers the run.
+
 ---
 
 ## Tested With
