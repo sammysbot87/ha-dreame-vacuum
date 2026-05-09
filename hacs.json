@@ -1,0 +1,7 @@
+{
+  "name": "Dreame Vacuum Cloud",
+  "domains": ["dreame_cloud"],
+  "documentation": "https://github.com/sammysbot87/ha-dreame-vacuum",
+  "requirements": [],
+  "iot_class": "cloud_polling"
+}

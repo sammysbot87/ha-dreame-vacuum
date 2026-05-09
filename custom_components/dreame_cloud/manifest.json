@@ -1,0 +1,11 @@
+{
+  "domain": "dreame_cloud",
+  "name": "Dreame Vacuum Cloud",
+  "config_flow": true,
+  "documentation": "https://github.com/sammysbot87/ha-dreame-vacuum",
+  "issue_tracker": "https://github.com/sammysbot87/ha-dreame-vacuum/issues",
+  "requirements": [],
+  "codeowners": ["@sammysbot87"],
+  "iot_class": "cloud_polling",
+  "version": "1.0.0"
+}

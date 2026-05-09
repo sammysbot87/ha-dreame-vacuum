@@ -1,0 +1,40 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Dreame Vacuum Cloud",
+        "description": "Connect to your Dreame cloud account to control your robot vacuum.",
+        "data": {
+          "username": "Username (Dreamehome account)",
+          "password": "Password",
+          "region": "Region"
+        }
+      },
+      "device": {
+        "title": "Select Device",
+        "description": "Multiple devices found. Select the vacuum to add.",
+        "data": {
+          "device_id": "Device"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate",
+        "description": "Your session has expired. Please enter your password again.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid username or password.",
+      "cannot_connect": "Cannot connect to the Dreame cloud. Check your internet connection.",
+      "no_devices": "No devices found on this account.",
+      "invalid_device": "Invalid device selected.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This device is already configured.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  }
+}
