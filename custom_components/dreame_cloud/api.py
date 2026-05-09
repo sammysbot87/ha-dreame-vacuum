@@ -238,6 +238,41 @@ class DreameCloudClient:
             raise APIError(f"Action failed: {result}")
         return result.get("data", {}).get("result", {}).get("code", -1) == 0
 
+    async def set_property(
+        self,
+        session: aiohttp.ClientSession,
+        siid: int,
+        piid: int,
+        value: Any,
+    ) -> bool:
+        """Set a single device property."""
+        if not await self.auth.ensure_valid_token(session):
+            raise AuthenticationError("Failed to authenticate")
+
+        req_id = self._next_id()
+        payload = {
+            "did": self.device_id,
+            "id": req_id,
+            "data": {
+                "did": self.device_id,
+                "id": req_id,
+                "method": "set_properties",
+                "params": [{"did": self.device_id, "siid": siid, "piid": piid, "value": value}],
+            },
+        }
+        async with session.post(
+            self._api_url,
+            headers=self._api_headers,
+            json=payload,
+            timeout=aiohttp.ClientTimeout(total=15),
+        ) as resp:
+            resp.raise_for_status()
+            result = await resp.json(content_type=None)
+
+        if not result.get("success"):
+            raise APIError(f"set_property failed: {result}")
+        return True
+
     async def get_devices(self, session: aiohttp.ClientSession) -> list[dict]:
         """List all devices on the account."""
         if not await self.auth.ensure_valid_token(session):

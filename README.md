@@ -6,6 +6,7 @@ Works with Dreamehome account logins (the native Dreame app).
 
 ## Features
 
+- ✅ **Vacuum entity** (`vacuum.*`) — works directly with vacuum-card, no template needed
 - 🔋 **Sensors:** Battery, charging status, device status, last clean duration & area, lifetime totals, all consumable life percentages, error state, shortcut list
 - 🔌 **Binary sensors:** Charging, cleaning active, mop installed, mop in station
 - ⚡ **Buttons:** Pause, Stop, Return to Dock, and **one button per shortcut** (auto-discovered from your account)
@@ -40,6 +41,13 @@ Should work with any Dreame cloud account vacuum (Dreamehome app). Mova/Trouver 
 5. Your device will be auto-discovered
 
 ## Entities
+
+### Vacuum
+| Entity | Description |
+|--------|-------------|
+| `vacuum.l10s_ultra_gen_2` | Main vacuum entity — use this with vacuum-card |
+
+Supports: start, pause, stop, return to dock, battery level, fan speed (suction level), status.
 
 ### Sensors
 | Entity | Description |
@@ -77,6 +85,54 @@ Should work with any Dreame cloud account vacuum (Dreamehome app). Mova/Trouver 
 | Stop | Stop current task |
 | Return to Dock | Send robot home |
 | Shortcut: \<name\> | One button per configured shortcut |
+
+## vacuum-card Example
+
+Install [vacuum-card](https://github.com/denysdovhan/vacuum-card) via HACS, then use this YAML directly — no template vacuum needed:
+
+```yaml
+type: custom:vacuum-card
+entity: vacuum.l10s_ultra_gen_2
+battery_entity: sensor.l10s_ultra_gen_2_battery
+show_name: true
+show_status: true
+show_toolbar: false
+
+stats:
+  default:
+    - entity_id: sensor.l10s_ultra_gen_2_main_brush_life
+      unit: "%"
+      subtitle: Main Brush
+    - entity_id: sensor.l10s_ultra_gen_2_side_brush_life
+      unit: "%"
+      subtitle: Side Brush
+    - entity_id: sensor.l10s_ultra_gen_2_filter_life
+      unit: "%"
+      subtitle: Filter
+    - entity_id: sensor.l10s_ultra_gen_2_last_clean_area
+      unit: m²
+      subtitle: Last Clean
+  cleaning:
+    - entity_id: sensor.l10s_ultra_gen_2_last_clean_duration
+      unit: min
+      subtitle: Duration
+    - entity_id: sensor.l10s_ultra_gen_2_last_clean_area
+      unit: m²
+      subtitle: Area
+
+shortcuts:
+  - name: Weekend Vacuum
+    service: button.press
+    target:
+      entity_id: button.l10s_ultra_gen_2_shortcut_weekend_vacuum
+    icon: mdi:sofa
+
+  - name: Bathrooms
+    service: button.press
+    target:
+      entity_id: button.l10s_ultra_gen_2_shortcut_bathrooms_vac_and_mop
+    icon: mdi:shower
+```
 
 ## Notes
 
