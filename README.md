@@ -158,7 +158,7 @@ When a new version is released, HACS will show an update badge on the integratio
 | `main_brush_life` | Main brush % remaining |
 | `side_brush_life` | Side brush % remaining |
 | `filter_life` | Filter % remaining |
-| `mop_pad_life` | Mop pad % remaining |
+| `mop_pad_life` | Mop pad % remaining — **only available when mop pad is physically attached to the robot** (not when stored in station) |
 | `sensor_cleanliness` | Sensor cleanliness % |
 | `task_status` | Current task type |
 | `charging_status` | Charging state |
@@ -231,9 +231,9 @@ stats:
     - attribute: filter_life
       unit: "%"
       subtitle: Filter
-    - attribute: mop_pad_life
+    - attribute: sensor_cleanliness
       unit: "%"
-      subtitle: Mop Pad
+      subtitle: Sensors
   cleaning:  # shown while cleaning
     - attribute: last_clean_time
       unit: min
