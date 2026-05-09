@@ -60,16 +60,41 @@ This integration pairs perfectly with [vacuum-card](https://github.com/denysdovh
 
 ## Installation
 
-### HACS (recommended)
+### Option 1 — HACS (Recommended)
 
-1. Add `https://github.com/sammysbot87/ha-dreame-vacuum` as a custom repository in HACS (Integration category)
-2. Install **Dreame Vacuum Cloud**
-3. Restart Home Assistant
+HACS gives you automatic update notifications when new versions are released.
 
-### Manual
+**Prerequisites:** [HACS](https://hacs.xyz) must be installed in your Home Assistant.
 
-1. Copy `custom_components/dreame_cloud/` to your HA `custom_components/` folder
-2. Restart Home Assistant
+1. In Home Assistant, go to **HACS → Integrations**
+2. Click the three-dot menu (⋮) in the top right → **Custom repositories**
+3. Add `https://github.com/sammysbot87/ha-dreame-vacuum` with category **Integration**
+4. Click **Add**
+5. Search for **Dreame Vacuum Cloud** in HACS and click **Download**
+6. **Restart Home Assistant**
+7. Go to **Settings → Devices & Services → Add Integration** and search for **Dreame Vacuum Cloud**
+
+### Option 2 — Manual Installation
+
+1. Download the [latest release](https://github.com/sammysbot87/ha-dreame-vacuum/releases/latest)
+2. Extract the zip and copy the `custom_components/dreame_cloud/` folder into your HA config directory:
+   ```
+   config/
+   └── custom_components/
+       └── dreame_cloud/     ← copy this folder here
+           ├── __init__.py
+           ├── api.py
+           ├── binary_sensor.py
+           ├── button.py
+           ├── config_flow.py
+           ├── const.py
+           ├── manifest.json
+           ├── sensor.py
+           ├── vacuum.py
+           └── translations/
+   ```
+3. **Restart Home Assistant**
+4. Go to **Settings → Devices & Services → Add Integration** and search for **Dreame Vacuum Cloud**
 
 ---
 
@@ -80,6 +105,30 @@ This integration pairs perfectly with [vacuum-card](https://github.com/denysdovh
 3. Enter your **Dreamehome username and password**
 4. Select your region (default: `sg` for Australia/Singapore)
 5. Your device will be auto-discovered and configured
+
+---
+
+## Upgrading
+
+### Via HACS
+
+When a new version is released, HACS will show an update badge on the integration.
+
+1. Go to **HACS → Integrations**
+2. Find **Dreame Vacuum Cloud** — click the **Update** button when shown
+3. **Restart Home Assistant**
+4. Done — your config, credentials, and entity IDs are all preserved
+
+> If no update badge appears, click the integration → three-dot menu → **Redownload** → select the latest version → Restart HA.
+
+### Manual Upgrade
+
+1. Download the [latest release](https://github.com/sammysbot87/ha-dreame-vacuum/releases/latest)
+2. Replace the contents of `config/custom_components/dreame_cloud/` with the new files
+3. **Restart Home Assistant**
+4. No re-setup needed — existing config entry and tokens carry over
+
+> ⚠️ **Never uninstall and reinstall** unless specifically instructed — you will lose your config entry and need to re-authenticate.
 
 ---
 
